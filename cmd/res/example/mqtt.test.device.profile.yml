@@ -1,4 +1,4 @@
-name: "Test.Device.MQTT.Profile"
+name: "Test.Device.MQTT.Profile3"
 manufacturer: "Dell"
 model: "MQTT-2"
 labels:
@@ -12,27 +12,8 @@ deviceResources:
     { name: "randnum" }
   properties:
     value:
-      { type: "Float64", size: "4", readWrite: "R", defaultValue: "0.00", minimum: "100.00", maximum: "0.00"  }
-    units:
-      { type: "String", readWrite: "R", defaultValue: "" }
--
-  name: ping
-  description: "device awake"
-  attributes:
-    { name: "ping" }
-  properties:
-    value:
-      { type: "String", size: "0", readWrite: "R", defaultValue: "oops" }
-    units:
-      { type: "String", readWrite: "R", defaultValue: "" }
--
-  name: message
-  description: "device notification message"
-  attributes:
-    { name: "message" }
-  properties:
-    value:
-      { type: "String", size: "0", readWrite: "W" ,scale: "", offset: "", base: ""  }
+      { type: "String", size: "0", readWrite: "" ,scale: "", offset: "", base: ""  }
+     # { type: "Float64", size: "4", readWrite: "R", defaultValue: "0.00", minimum: "100.00", maximum: "0.00"  }
     units:
       { type: "String", readWrite: "R", defaultValue: "" }
 
@@ -41,23 +22,24 @@ resources:
   name: testrandnum
   get:
   - { index: "1", operation: "get", object: "randnum", parameter: "randnum", property: "value" }
--
-  name: testping
-  get:
-  - { index: "1", operation: "get", object: "ping", parameter: "ping", property: "value" }
--
-  name: testmessage
-  get:
-  - { index: "1", operation: "get", object: "message", parameter: "message", property: "value" }
-  set:
-  - { index: "1", operation: "set", object: "message", parameter: "message", property: "value" }
+#-
+#  name: testping
+#  get:
+#  - { index: "1", operation: "get", object: "ping", parameter: "ping", property: "value" }
+
+#-
+#  name: testmessage
+#  get:
+#  - { index: "1", operation: "get", object: "message", parameter: "message", property: "value" }
+#  set:
+#  - { index: "1", operation: "set", object: "message", parameter: "message", property: "value" }
 
 commands:
 -
   name: testrandnum
   get:
-    path: "/api/v1/device/{deviceId}/testrandnum"
-    responses:
+   path: "/api/v1/device/{deviceId}/testrandnum"
+   responses:
     -
       code: "200"
       description: "get the random value"
@@ -66,41 +48,41 @@ commands:
       code: "503"
       description: "service unavailable"
       expectedValues: []
--
-  name: testping
-  get:
-    path: "/api/v1/device/{deviceId}/testping"
-    responses:
-    -
-      code: "200"
-      description: "ping the device"
-      expectedValues: ["ping"]
-    -
-      code: "503"
-      description: "service unavailable"
-      expectedValues: []
--
-  name: testmessage
-  get:
-    path: "/api/v1/device/{deviceId}/testmessage"
-    responses:
-    -
-      code: "200"
-      description: "get the message"
-      expectedValues: ["message"]
-    -
-      code: "503"
-      description: "service unavailable"
-      expectedValues: []
-  put:
-    path: "/api/v1/device/{deviceId}/testmessage"
-    parameterNames: ["message"]
-    responses:
-    -
-      code: "204"
-      description: "set the message."
-      expectedValues: []
-    -
-      code: "503"
-      description: "service unavailable"
-      expectedValues: []
+#-
+#  name: testping
+#  get:
+#    path: "/api/v1/device/{deviceId}/testping"
+#    responses:
+#    -
+#      code: "200"
+#      description: "ping the device"
+#      expectedValues: ["ping"]
+#    -
+#      code: "503"
+#      description: "service unavailable"
+#      expectedValues: []
+#-
+#  name: testmessage
+#  get:
+#    path: "/api/v1/device/{deviceId}/testmessage"
+#    responses:
+#    -
+#      code: "200"
+#      description: "get the message"
+#      expectedValues: ["message"]
+#    -
+#      code: "503"
+#      description: "service unavailable"
+#      expectedValues: []
+#  put:
+#    path: "/api/v1/device/{deviceId}/testmessage"
+#    parameterNames: ["message"]
+#    responses:
+#    -
+#      code: "204"
+#      description: "set the message."
+#      expectedValues: []
+#    -
+#      code: "503"
+#      description: "service unavailable"
+#      expectedValues: []

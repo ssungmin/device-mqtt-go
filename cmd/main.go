@@ -14,7 +14,7 @@ import (
 
 const (
 	version     string = device_mqtt.Version
-	serviceName string = "edgex-device-mqtt"
+	serviceName string = "edgex-device-mqtt3"
 )
 
 func main() {

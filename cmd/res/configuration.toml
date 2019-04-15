@@ -15,14 +15,6 @@ Port = 8500
 CheckInterval = "10s"
 FailLimit = 3
 FailWaitTime = 10
-Type = "consul"
-
-[Logging]
-EnableRemote = false
-File = "./device-mqtt.log"
-
-[Writable]
-LogLevel = "INFO"
 
 [Clients]
   [Clients.Data]
@@ -53,5 +45,38 @@ LogLevel = "INFO"
   MaxCmdValueLen = 256
   RemoveCmd = ""
   RemoveCmdArgs = ""
-  ProfilesDir = ""
+  ProfilesDir = "./res/example"
 
+[Logging]
+EnableRemote = false
+File = "./device-mqtt.log"
+Level = "DEBUG"
+
+# Pre-define Devices
+[[DeviceList]]
+  Name = "MQTT test device3"
+  Profile = "Test.Device.MQTT.Profile3"
+  Description = "MQTT device is created for test purpose"
+  Labels = [ "MQTT", "test"]
+  [DeviceList.Addressable]
+    name = "Gateway address"
+    Protocol = "TCP"
+    Address = "0.0.0.0"
+    Port = 1883
+    Publisher = "CommandPublisher"
+    user = "admin"
+    password = "public"
+    topic = "CommandTopic"
+
+
+ #Pre-define Schedule Configuration
+#[[Schedules]]
+#Name = "mqtt-30sec-schedule"
+#Frequency = "PT30S"
+
+#[[ScheduleEvents]]
+#Name = "readRandnum"
+#Schedule = "mqtt-30sec-schedule"
+#  [ScheduleEvents.Addressable]
+#  HTTPMethod = "GET"
+#  Path = "/api/v1/device/name/MQTT test device/testrandnum"

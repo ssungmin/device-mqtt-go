@@ -17,7 +17,7 @@ import (
 )
 
 const (
-	brokerUrl  = "0.0.0.0"
+	brokerUrl  = "127.0.0.1"
 	brokerPort = 1883
 	username   = "admin"
 	password   = "public"
@@ -85,12 +85,12 @@ func runDataSender() {
 	}
 
 	var data = make(map[string]interface{})
-	data["name"] = "MQTT test device"
+	data["name"] = "MQTT test device3"
 	data["cmd"] = "randnum"
 	data["method"] = "get"
 
 	for {
-		data["randnum"] = rand.Float64()
+		data["randnum"] = "wow"
 		jsonData, err := json.Marshal(data)
 		if err != nil {
 			fmt.Println(err)
